@@ -15,6 +15,23 @@ pdf = FPDF(orientation='P', unit='mm', format='A4') # right click FPDF for lots 
 
 # add more pages programmatically using pandas
 topics = pd.read_csv('topics.csv')
+# Block 2) if you want x number of pages for each topic, with each page containing the topic header, uncomment this
+# code and comment out Block 3
+# for index, topic in topics.iterrows():
+#     for page in range(topic['Pages']):
+#         pdf.add_page()
+#         pdf.set_font(family='Times', size=24)
+#         pdf.set_text_color(200, 200, 254)  #any or each of these values can range for 0 to 254, mixing red, green and blue
+#         # for example pdf.set_text_color(254, 0, 0) means 254 red, 0 for green and 0 for blue, meaning all red
+#         pdf.cell(w=0, h=12, txt=topic['Topic'], align="L", ln=1, border=0)
+#
+#     # next we set the coordinates of the line which will appear immediately under the txt=topic['Topic']
+#     # these coordinates are x1, y1, x2 and y2. Their distances are measured in unit='mm'
+#     # x1=from left margin, y1=from top margin, x2=from left margin, y2=from top margin. (Rem: PDF A4 is 210 mm width)
+#     pdf.line(10, 21, 200, 21)
+
+# Block 3) if you want x number of pages for each topic, with only the first page containing the topic header,
+# uncomment this code and comment out Block 2
 for index, topic in topics.iterrows():
     pdf.add_page()
     pdf.set_font(family='Times', size=24)
@@ -26,6 +43,10 @@ for index, topic in topics.iterrows():
     # these coordinates are x1, y1, x2 and y2. Their distances are measured in unit='mm'
     # x1=from left margin, y1=from top margin, x2=from left margin, y2=from top margin. (Rem: PDF A4 is 210 mm width)
     pdf.line(10, 21, 200, 21)
+
+    for page in range(topic['Pages']):
+        pdf.add_page()
+
 
 pdf.output('Topics.pdf', 'F')
 
