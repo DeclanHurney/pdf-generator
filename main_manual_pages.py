@@ -41,6 +41,6 @@ pdf.cell(w=180, h=12, txt='Next line because w attribute of this cell and ln att
 
 # add more pages programmatically using pandas
 
-pdf.output('output.pdf', 'F')
+pdf.output('Topics.pdf', 'F')
 
 
