@@ -15,7 +15,7 @@ pdf.set_auto_page_break(auto=False, margin=0) #pages should not be broken automa
 # configure headers and footers correctly and as we expect.
 
 # add more pages programmatically using pandas
-topics = pd.read_csv('topics.csv')
+topics = pd.read_csv('../topics.csv')
 # Block 2) if you want x number of pages for each topic, with each page containing the topic header, uncomment this
 # code and comment out Block 3
 # for index, topic in topics.iterrows():
@@ -72,3 +72,5 @@ for index, topic in topics.iterrows():
         set_footer(270)
 
 pdf.output('Topics.pdf', 'F')
+
+
